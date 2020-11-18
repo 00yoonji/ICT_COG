@@ -1,0 +1,308 @@
+# %%
+a = 10
+print(a)
+a = 10.10
+print(a)
+a = 'Hello World!'
+print(a)
+a = [1, 2, 3, 4, 5]
+print(a)
+
+# %%
+a = 10
+b = 20
+c = a + b
+d = a - b
+''' +, -, *, /, //, %, ** '''
+
+# %% 평균, 분산 구하기(복습)
+score1, score2, score3 = 10, 20, 30
+n_score = 3
+
+mean_score = (score1 + score2 + score3) / n_score
+square_score = score1**2 + score2**2 + score3**2
+var = (square_score / n_score) - mean_score**2
+
+print(mean_score)
+print(var)
+
+# %%
+scores = [10, 20, 30]
+n_scores = len(scores)
+score_sum = 0
+n_student = 0
+square_scores = 0
+
+for score in scores:
+    score_sum += score
+    n_student += 1
+mean_scores = score_sum / n_student
+print(mean_scores)
+
+for score in scores:
+    square_scores += score**2
+var = square_scores/n_student - mean_scores**2
+print(var)
+
+# %% math, english 평균 구하기
+math_scores = [10, 20, 30, 40, 50]
+english_scores = [20, 30, 40, 50, 60]
+m_student = 0
+e_student = 0
+m_sum = 0
+e_sum = 0
+
+for m_score in math_scores:
+    m_sum += m_score
+    m_student += 1
+m_mean = m_sum / m_student
+print(m_mean)
+
+for e_score in english_scores:
+    e_sum += e_score
+    e_student +=1
+e_mean = e_sum / e_student
+print(e_mean)
+
+# %%
+''' range() '''
+scores = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for index in scores:
+    print(index)
+
+for index in range(10):
+    print(index)
+
+# %%
+''' range() '''
+scores = [10, 20, 30, 40, 50]
+
+score_sum = 0
+for index in range(len(scores)):
+    score_sum += scores[index]
+
+score_sum = 0
+for score in scores:
+    score_sum += score
+
+# %% range, index 이용해서 math, english 평균 구하기
+math_scores = [10, 20, 30, 40, 50]
+english_scores = [20, 30, 40, 50, 60]
+
+math_score_sum, english_score_sum = 0, 0
+for index in range(len(math_scores)):
+    math_score_sum += math_scores[index]
+    english_score_sum += english_scores[index]
+
+math_mean = math_score_sum / len(math_scores)
+english_mean = english_score_sum / len(english_scores)
+
+print(math_mean, english_mean)
+
+# %% 별 찍기
+for i in range(5):
+    print('*'*(i+1))
+for i in range(5):
+    print(' '*(4-i)+'*'*(i+1))
+
+# %% list의 연산
+test_list1 = [1, 2, 3]
+test_list2 = [4, 5, 6]
+
+print(test_list1 + test_list2)
+print(test_list1*3)
+
+# %% 비교연산자
+a = 10
+b = 20
+print(a >= b)    #False
+print(a <= b)    #True
+''' <, >, <=, >=, ==, != '''
+
+# %% type casting
+a = 10
+b = float(a)
+c = str(a)
+
+print(type(a), type(b), type(c))
+
+# %% Boolean data type
+#True, False
+#0 빼고 다 True
+
+#int, float -> bool
+a = 3.0
+print(bool(a))
+a = 0.0
+print(bool(a))
+a = -3.0
+print(bool(a))
+
+#list -> bool
+a = [1, 2, 3]
+print(bool(a))
+a = []
+print(bool(a))
+a = [0, 0, 0]
+print(bool(a))
+
+# %% if문
+score = 70
+if score > 60:
+    print("합격")
+elif score > 40 and score <= 60:
+    print("재시험")
+else:
+    print("불합격")
+
+# %% 학점 매기기
+'''
+90~100 : A
+70~89 : B
+50~69 : C
+0~49 : F
+'''
+score = 89
+if 90 <= score <= 100:
+    print("A")
+elif 70 <= score <= 89:
+    print("B")
+elif 50 <= score <= 69:
+    print("C")
+elif 0 <= score <= 49:
+    print("F")
+else:
+    print("INVALID SCORE")
+    #raise ValueError(강제로 error 발생)
+
+# %% 학점 매기기2(중첩 if문)
+'''
+95~100 : A+
+90~94 : A0
+80~89 : B+
+70~79 : B0
+60~69 : C+
+50~59 : C0
+0~49 : F
+'''
+score = 50
+if score >= 90 and score <= 100:
+    if score >= 90 and score <= 94:
+        print("A0")
+    else:
+        print("A+")
+elif score >= 70 and score <= 89:
+    if score >= 70 and score <= 79:
+        print("B0")
+    else:
+        print("B+")
+elif score >= 50 and score <= 69:
+    if score >= 50 and score <= 59:
+        print("C0")
+    else:
+        print("C+")
+elif score >= 0 and score <= 49:
+    print("F")
+else:
+    print("INVALID SCORE")
+
+# %% if문 연습 
+#큰 수 출력
+a, b = 30, 20
+if a > b:
+    print("a")
+elif a == b:
+    print("같다")
+else:
+    print("b")
+
+#양수인지 음수인지 판별
+a = -40
+if a > 0:
+    print("양수")
+elif a == 0:
+    print("0")
+else:
+    print("음수")
+
+#절대값 출력
+a = -40
+if a >= 0:
+    print(a)
+else:
+    print(-a)
+
+#할인된 가격 구하기
+price = 15000
+if price >= 30000:
+    print("할인된가격 : ", price*0.85)
+elif price >= 20000:
+    print("할인된가격 : ", price*0.9)
+elif price >= 10000:
+    print("할인된가격 : ", price*0.95)
+else:
+    print("할인 X")
+
+#연산 기호에 따라 값 출력
+a, b = 10, 20
+operator = '+'
+if operator == '+':
+    print(a+b)
+elif operator == '-':
+    if a > b:
+        print(a-b)
+    else:
+        print(b-a)
+elif operator == '*':
+    print(a*b)
+elif operator == '/':
+    print (a/b)
+else:
+    raise ValueError
+
+#짝수, 홀수 구분
+a = 20
+if (a%2) == 0:
+    print("짝수")
+else:
+    print("홀수")    
+
+for i in range(100):
+    if (i%2) == 0:
+        print("짝수 : ", i)
+    else:
+        print("홀수 : ", i)
+
+#평균이 70점 이상이면 우수반, 69~50점이면 중급반, 아니면 보충반
+scores = [10, 30, 60, 80, 20, 50]
+sum_score = 0
+
+for score in scores:
+    sum_score += score
+mean_score = sum_score / len(scores)
+
+print("평균 : ", mean_score)
+if mean_score >= 70:
+    print("우수반")
+elif mean_score >=50 and mean_score <=69:
+    print("중급반")
+else:
+    print("보충반")
+
+#홀수들의 합, 짝수들의 합 구하기
+odd_sum, odd_cnt = 0, 0
+even_sum, even_cnt = 0, 0
+
+for i in range(100):
+    if (i%2) == 0:
+        even_sum += i
+        even_cnt += 1
+    else:
+        odd_sum += i
+        odd_cnt += 1
+        
+print("Odd sum : ", odd_sum)
+print("Even sum : ", even_sum)
+
+print("Odd mean : ", odd_sum / odd_cnt)
+print("Even mean : ", even_sum / even_cnt)
