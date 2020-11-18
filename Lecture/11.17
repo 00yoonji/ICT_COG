@@ -1,1 +1,191 @@
+# %% 연산자(대입연산자)
+a = 10
+b = 20
+c = 10.53
+d = 'shin'
 
+a, b = 10, 20
+
+# %%
+a = 20
+b = 5
+
+print(a+b)  #덧셈
+print(a-b)  #뺄셈
+print(a*b)  #곱셈
+print(a**2) #제곱
+print(a/b)  #나눗셈
+
+print(a//b) #몫
+print(a%b)  #나머지
+
+# %%
+print(a+b)
+print(a._add_(b))
+print(int._add_(a, b))
+
+# %% mean 구하기
+score1, score2, score3, score4 = 50, 40, 60, 30
+mean = (score1 + score2 + score3 + score4)/4
+
+print(mean)
+
+# %% 분산 V(X) = E(X**2) - E(X)**2
+score1, score2, score3, score4 = 50, 40, 60, 30
+n_student = 4
+mean = (score1 + score2 + score3 + score4)/n_student
+square = (score1**2 + score2**2 + score3**2 + score4**2) / n_student
+variance = square - mean**2
+
+# %% Mean Squared Error 구하기
+y1, y2, y3, y4 = 10, 20, 30, 40
+p1, p2, p3, p4 = 40, 30, 20, 40
+
+n = 4
+minus1 = y1-p1
+minus2 = y2-p2
+minus3 = y3-p3
+minus4 = y4-p4
+mse_error = (minus1**2 + minus2**2 + minus3**2 + minus4**2) / n
+print(mse_error)
+
+# %% 복합 대입 연산자
+a = 0
+a += 1
+a -= 1
+a *= 1
+a /= 1
+
+# %%
+score1, score2, score3, score4 = 50, 40, 60, 30
+
+score_sum = 0
+n_student = 0
+
+score_sum += score1
+n_student += 1
+
+score_sum += score2
+n_student += 1
+
+score_sum += score3
+n_student += 1
+
+score_sum += 4
+n_student += 1
+
+mean = score_sum / n_student
+
+# %%
+test_list = []
+for i in range(10):
+    test_list.append(2*i)
+print(test_list)
+
+test_list = [2*i for i in range(10)]
+print(test_list)
+
+# %%
+import math
+
+y = 0.7 #실제 값
+p = 0.5 #예측 값
+
+loss = -(y*math.log(p) + (1-y)*math.log(1-p))
+print(loss)
+
+p = 0.6
+loss = -(y*math.log(p) + (1-y)*math.log(1-p))
+print(loss)
+
+p = 0.7
+loss = -(y*math.log(p) + (1-y)*math.log(1-p))
+print(loss)
+
+# %% List -> 값들을 한 번에 들고 다니기 위해서 개발됨
+scores = [30, 40, 20, 10, 60]
+
+# %% indexing : List에 들어있는 값에 한개씩 접근
+print(scores[0])    #30
+print(scores[1])    #40
+print(scores[2])    #20
+print(scores[3])    #10
+print(scores[4])    #60
+
+# %%
+scores = [30, 40, 20, 10, 60]
+print(scores[-1])   #60
+print(scores[-2])   #10
+
+# %%
+file name = '.JPEG'
+file_name_split = file_name.split('.')
+print(file_name)
+print(file_name_split)
+
+extension = file_name_split[-1]
+print(extension)    #출력 : JPEG
+
+# %% 빈 리스트를 만드는 방법
+test_list = []
+print(test_list)
+
+test_list2 = list()
+print(test_list2)
+
+# %% 값 수정하기
+''' mutable object : 값을 바꿀 수 있는(대괄호) '''
+scores = [30, 40, 20, 10, 60]
+print(scores)
+scores[0] = 100
+scores[1] = 200
+print(scores)
+
+# %%
+''' immutable object : 값을 바꿀 수 없는(소괄호) '''
+test_tuple = (1, 2, 3, 4, 5)
+print(test_tuple[0])
+test_tuple[0] = 100
+
+# %%
+a = [1, 2, 3, 4]
+print(type(a))  #list
+
+b = (1, 2, 3, 4)
+print(type(b))  #tuple
+
+c = {1, 2, 3, 4}
+print(type(c))  #set
+
+d = {'a': 1, 'b': 2, 'c': 3}
+print(type(d))  #dict
+
+# %%
+scores = [50, 40, 60, 30]
+score_num = 4
+
+score_mean = (scores[0] + scores[1] + scores[2] + scores[3]) / score_num
+score_square = (scores[0]**2 + scores[1]**2 + scores[2]**2 + scores[3]**2) / score_num
+
+score_var = score_square - score_mean**2
+
+print(score_mean)
+print(score_var)
+
+# %%
+scores = [10, 20, 30, 40, 50]
+score_sum = 0
+n_student = 0
+
+for score in scores:
+    score_sum += score
+    n_student += 1
+
+mean = score_sum / n_student
+print(score_sum)
+
+square_sum = 0
+for score in scores:
+    square_sum += score**2
+
+var = square_sum/4 - mean**2
