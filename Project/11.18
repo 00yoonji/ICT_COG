@@ -1,8 +1,19 @@
 #3의 배수들의 합과 평균
 #3으로 나눴을 때 0인 값, 1인 값, 2인 값들의 총합과 평균
+#3으로 나눴을 때 0인 값 개수 : n0
+                 1인 값 개수 : n1
+                 2인 값 개수 : n2
+#3으로 나눴을 때 0인 값 합 : sum0
+                 1인 값 합 : sum1
+                 2인 값 합 : sum2
+#3으로 나눴을 때 0인 값 평균 : mean0
+                 1인 값 평균 : mean1
+                 2인 값 평균 : mean2
+MAX = 100
 n0, n1, n2 = 0, 0, 0
 sum0, sum1, sum2 = 0, 0, 0
-for i in range(100):
+
+for i in range(MAX):
     if (i%3 == 0):
         sum0 += i
         n0 += 1
@@ -17,5 +28,5 @@ mean0 = sum0 / n0
 mean1 = sum1 / n1
 mean2 = sum2 / n2
 
-print(sum0, sum1, sum2)
-print(mean0, mean1, mean2)
+print("합 : ", sum0, sum1, sum2)
+print("평균 : ", mean0, mean1, mean2)
