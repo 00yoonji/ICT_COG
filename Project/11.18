@@ -1,0 +1,21 @@
+#3의 배수들의 합과 평균
+#3으로 나눴을 때 0인 값, 1인 값, 2인 값들의 총합과 평균
+n0, n1, n2 = 0, 0, 0
+sum0, sum1, sum2 = 0, 0, 0
+for i in range(100):
+    if (i%3 == 0):
+        sum0 += i
+        n0 += 1
+    elif(i%3 == 1):
+        sum1 += i
+        n1 += 1
+    elif(i%3 == 2):
+        sum2 += i
+        n2 += 1
+
+mean0 = sum0 / n0
+mean1 = sum1 / n1
+mean2 = sum2 / n2
+
+print(sum0, sum1, sum2)
+print(mean0, mean1, mean2)
