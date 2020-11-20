@@ -1,0 +1,154 @@
+# %% 분, 초 계산하기
+second = 120
+
+minutes = (int)(second / 60)
+#minutes = seconds // 60
+seconds = second % 60
+
+print(minutes, "분 ", seconds, "초")
+
+# %% 시, 분, 초 구하기
+second = 123456789
+
+hours = second // 3600
+remaining_second = second - hours * 3600
+
+minutes = remaining_second // 60
+
+seconds = remaining_second % 60
+
+print(hours, "시", minutes, "분 ", seconds, "초")
+
+# %% 사분면 구하기
+point_coordinate = [2, 3]
+x = point_coordinate[0]
+y = point_coordinate[1]
+
+if ((x > 0) and (y > 0)):
+    print("1사분면")
+elif ((x < 0) and (y > 0)):
+    print("2사분면")
+elif ((x < 0) and (y < 0)):
+    print("3사분면")
+elif ((x > 0) and (y < 0)):
+    print("4사분면")
+
+# %% 사분면, x축, y축, 원점 중 어느 위치인지 구하기
+point_coordinate = [2, 3]
+x = point_coordinate[0]
+y = point_coordinate[1]
+
+if ((x > 0) and (y > 0)):
+    print("1사분면")
+elif ((x < 0) and (y > 0)):
+    print("2사분면")
+elif ((x < 0) and (y < 0)):
+    print("3사분면")
+elif ((x > 0) and (y < 0)):
+    print("4사분면")
+elif ((x == 0) and (y !=0)):
+    print("y축")
+elif ((x != 0 ) and (y == 0)):
+    print("x축")
+elif ((x == 0) and (y == 0)):
+    print("원점")
+
+# %% 피보나치 수열
+#0 1 1 2 3 5 8 13 21 34 55
+first_number, second_number = 0, 1
+n_iter = 10
+print(first_number)
+print(second_number)
+
+for i in range(n_iter):
+    current_number = first_number + second_number
+    first_number = second_number
+    second_number = current_number
+    print(current_number)
+
+# %% 피보나치 수열2
+first_number, second_number, third_number = 0, 1, 2
+n_iter = 10
+print(first_number)
+print(second_number)
+print(third_number)
+
+for i in range(n_iter):
+    current_number = first_number + second_number + third_number
+    first_number = second_number
+    second_number = third_number
+    third_number = current_number
+    print(current_number)
+
+# %% 할인된 총 가격 구하기
+prices = [6000, 14000, 17000, 25000, 3000, 300]
+total_discount = 0
+
+for price in prices:
+    if price >= 20000:
+        discounted_price = price*0.15
+        print("discounted_price = ", discounted_price)
+        total_discount += discounted_price
+    elif price >= 15000:
+        discounted_price = price*0.1
+        print("discounted_price = ", discounted_price)
+        total_discount += discounted_price
+    elif price >= 10000:
+        discounted_price = price*0.05
+        print("discounted_price = ", discounted_price)
+        total_discount += discounted_price
+    else:
+        print("Not discounted")
+print("총 할인 가격 : ", total_discount)
+
+# %% 
+import numpy as np
+
+test_input = np.random.normal(loc=0, scale=1, size=(100, ))
+print(test_input)
+
+test_input = np.random.normal(0, 100, size=(100, )).astype(np.int)
+print(test_input)
+#print(type(test_input))
+
+# %%
+import numpy as np
+
+test_input = np.random.normal(loc=0, scale=1, size=(100, ))
+print(test_input)
+
+# %%
+import numpy as np
+
+scores = np.random.uniform(0, 100, size=(100, )).astype(np.int32)
+#print(scores)
+
+max_score = None
+#current_score = 0
+for score in scores:
+    if max_score == None or score > max_score:
+        max_score = score
+print(max_score)
+print(type(None))
+
+# %%
+import numpy as np
+scores = np.random.uniform(0, 100, size=(100, )).astype(np.int32)
+#print(scores)
+
+min_score = None
+#current_score = 0
+for score in scores:
+    if min_score == None or score < min_score:
+        min_score = score
+print(min_score)
+print(type(None))
+
+# %%
+for i in range(5, 10, 2):
+    print(i)
+# %% list comprehension
+#map 대체
+#0부터 9까지 도는데 i가 짝수일때만 넣음
+test_list = [2 * i for i in range(10) if i % 2 == 0]
+print(test_list)
