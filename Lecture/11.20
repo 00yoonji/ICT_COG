@@ -1,0 +1,248 @@
+# %% 참고만 하기
+from scipy.io.wavfile import read
+import pydub
+from pydub.playback import play
+import numpy as np
+rate, music = read("test_song.wav")
+
+noise_coeff = 1000
+music = music[rate*33:rate*41,:]
+music = music + noise_coeff*np.random.normal(0, 10, size=music.shape).astype(np.int16)
+
+audio_segment = pydub.AudioSegment(
+    music.tobytoes(),
+    frame_rate = rate,
+    sample_width = music.dtype.itemsize,
+    channels = 2)
+
+play(audio_segment)
+
+# %% 복습
+import numpy as np
+
+scores = np.random.uniform(0, 100, size=(100,)).astype(np.int)
+
+#최댓값, 최솟값, 평균, 분산
+max, min = None, None
+score_sum, score_square = 0, 0
+cnt = 0
+
+for score in scores:
+    score_sum += score
+    score_square += score**2
+    
+    if max == None or score > max:
+        max = score
+        
+    if min == None or score < min:
+        min = score
+        
+    cnt += 1
+
+mean = score_sum / cnt
+variance = (score_square / cnt) - (mean**2)
+
+# %%
+#test_list라는 list에 100개의 수를 넣어주기
+test_list = []
+for i in range(100):
+    test_list.append(i)
+print(test_list, '\n')
+#같은 내용 다른 표현
+test_list = [i for i in range(100)]
+print(test_list)
+
+# %% list comprehension
+#단순한 list comprehension
+#2의 배수를 가지는 list
+list2 = [2*i for i in range(100)]   //1
+print(list2)
+#3의 배수를 가지는 list
+list3 = [3*i for i in range(100)]
+print(list3)
+#5의 배수를 가지는 list
+list5 = [5*i for i in range(100)]
+print(list5)
+
+#list comprehension + if
+#2의 배수를 가지는 list
+test_list = [i for i in range(100) if i % 2 == 0]   //2
+print(test_list)
+'''
+1은 100번 반복하는것
+2는 범위가 100인 것
+'''
+
+#list comprehension applications
+test_list = [str(i) for i in range(100)]
+test_list = [float(i) for i in range(100)]
+test_list = [i+1 for i in range(100)]
+test_list = [i%4 for i in range(100)]
+test_list = [bool(i%2) for i in range(100)]
+test_list = [i**2 for i in range(100)]
+
+# %% list comprehension + 2 for loops
+test_list = [i*j for i in range(10) for j in range(10)]
+print(test_list)
+
+test_list = list()
+for i in range(10):
+    for j in range(10):
+        test_list.append(i*j)
+
+test_list = [i*j for i in range(10) for j in range(10) if i*j % 2 == 0]
+
+# %% object = data + method
+a = [1, 2, 3, 4]    #list라는 object
+print(type(a))
+print(a, '\n')
+# print(dir(a))
+
+for i in range(4):
+    print(a.pop())  
+    print(a, '\n')
+
+b = 10
+print(b)
+print(type(b))
+
+# %% 복소수(실수+허수)
+a = 3 + 2j
+print(a)
+print(a.real)
+print(a.imag)
+
+# %%
+a = [[1, 2], [3, 4]]   #list는 object니까 list안에 list 넣을수있음
+print(a[0])     #[1, 2]
+b = [1, 2, 3, 4, 5]
+print(b[0])     #1
+
+# %%
+def tmp_fuct(): #함수
+    pass
+class TmpClass: #클래스
+    pass
+
+scores = [[1, 2], [3, 4], [1, 2, 3], 'Hello World', 10, 120.42, tmp_fuct, TmpClass]
+#list, string, integer, float, function, class 다 object
+for score in scores:
+    print(score)
+
+# %% string도 object
+a = "Hello-World!"
+print(a.split('-')) #'-'를 기준으로 나눠서 list에 넣어줌
+print(a.lower())    #소문자로 바꿈
+print(a.upper())    #대문자로 바꿈
+
+# %%
+scores = [[10, 20], [30, 40], [50, 60]]
+means = []
+for score in scores:
+    math_score = score[0]
+    english_score = score[1]
+    
+math_sum, english_sum = 0, 0
+for i in range(len(scores)):
+    math_sum += math_score
+    english_sum += english_score
+    
+math_mean = math_sum / len(scores)
+english_mean = english_sum / len(scores)
+means.append(math_mean)
+means.append(english_mean)
+print(means)
+
+
+# %% Unpacking 개념
+a, b = [1, 2]
+#print('a : ', a, 'b : ', b)
+
+scores = [[10, 20], [30, 40], [50, 60]]
+#리스트 0 = 수학평균, 리스트 1 = 영어평균
+means, sums = [0, 0], [0, 0]
+
+for math_score, english_score in scores:
+    sums[0] += math_score
+    sums[1] += english_score
+
+means[0] = sums[0] / len(scores)
+means[1] = sums[1] / len(scores)
+
+print(means)
+
+# %% 평균 구하기
+names_scores = [['A', 100],
+                ['B', 50],
+                ['C', 30]]
+
+sum_scores = 0
+for _, score in names_scores:   #'_'는 필요없는 값을 저장하기 위한 변수로 약속
+    sum_scores += score
+mean = sum_scores / len(names_scores)
+print(mean)
+
+# %% centroid(무게중심)
+#k means clustering(k 평균 군집화)
+coordinates = [[-2, 3], [4, 6], [-10, 30]]
+centroid = []
+x_sum, y_sum = 0, 0
+for x, y in coordinates:
+    x_sum += x
+    y_sum += y
+
+centroid = [x_sum / len(coordinates), y_sum / len(coordinates)]
+print(centroid)
+
+# %% Euclidean distance(피타고라스 정리 이용해 거리 구하기)
+import math
+coordinates = [[-2, 3], [4, 6], [-10, 30]]
+centroid = [5, -1]
+
+distances = list()
+for x, y in coordinates:
+    square_sum = (x-centroid[0])**2 + (y-centroid[1])**2
+    distance = math.sqrt(square_sum)
+    
+    distances.append(distance)
+
+print(distances) 
+
+# %% dictionary
+means = {'math':10, 'english':20, 'physics':30}
+print(means)
+
+print(means['math'])
+print(means['english'])
+print(means['physics'])
+
+'''
+dictionary 만드는 두 가지 방법
+means = {}
+means = dict()
+'''
+# %%
+means = dict()
+print(means)
+means['math'] = 20
+print(means)
+means['english'] = 30
+print(means)
+means['physics'] = 40
+print(means)
+# %%
+scores = [[10, 20, 30], [30, 40, 10], [50, 60, 50]]
+sums = [0, 0, 0]
+subjects = ['math', 'english', 'physics']
+means = dict()
+
+for math_score, english_score, physics_score in scores:
+    sums[0] += math_score
+    sums[1] += english_score
+    sums[2] += physics_score
+
+for index in range(len(sums)):
+    subject = subjects[index]
+    means[subject] = sums[index] / len(scores)
+    
+print(means)
