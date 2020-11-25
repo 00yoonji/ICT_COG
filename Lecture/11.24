@@ -20,7 +20,7 @@ for class_idx in range(n_class):
 dataset = dataset.tolist()
 centroids = np.random.uniform(-5, 5, size=(n_class, 2)).tolist()
 
-#%%
+# %%
 clusters = []
 for _ in range(n_class):
     clusters.append([])
@@ -58,10 +58,10 @@ for data in dataset:
         
         centroids[cnt] = [x_mean, y_mean]
         cnt += 1
-#%%
+# %%
 print(20)
 
-#%%
+# %%
 def a(**k):
     print(list(k.keys()))
     print(list(list(k.values())))
@@ -69,18 +69,18 @@ def a(**k):
 a(a=10, b=20)
 print(a)
 
-#%%
+# %%
 A = [2**i for i in range(10)]
 print(A[2])
 
-#%%
+# %%
 def func():
     yield 1
     yield 1
     yield 1
 print(type(func()))
 
-#%%
+# %%
 class Test:
     def __init__(self,a):
         self.__a = a
@@ -92,11 +92,11 @@ class Test:
     def a(self,value):
         self.__a = value
         
-a1,a2,a3 =Test(3),Test(2),Test(3)
-a3.a =a1.a +a2.a
+a1, a2, a3 = Test(3), Test(2), Test(3)
+a3.a = a1.a + a2.a
 print(a3.a)
 
-#%%
+# %%
 class GF:
     pass
 class F(GF):
@@ -104,10 +104,10 @@ class F(GF):
 class S(F):
     pass
 
-k,g,s=F(),GF(),S()
-print(isinstance(s,GF),isinstance(s,F))
+k, g, s = F(), GF(), S()
+print(isinstance(s, GF), isinstance(s, F))
 
-#%%
+# %%
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -138,7 +138,7 @@ centroids = np.random.uniform(-3, 3, size=(n_cluster,2 )).tolist()
 # print(centroids)
 for i in range(10):
     
-    cluster1, cluster2 =[],[]
+    cluster1, cluster2 = [], []
     for data_point in dataset:
         x,y = data_point
         distance1 = (centroids[0][0] - x)**2 + (centroids[0][1] - y)**2
@@ -151,37 +151,37 @@ for i in range(10):
            
     # print(cluster1[0])           
         
-    x_sum,y_sum, cnt = 0, 0, 0
+    x_sum, y_sum, cnt = 0, 0, 0
     for i in cluster1:
-        x,y =i
+        x, y =i
         x_sum += x 
         y_sum += y 
         cnt += 1
         
     centroids[0][0] = x_sum / cnt
-    centroids[0][1]= y_sum / cnt
+    centroids[0][1] = y_sum / cnt
     print(centroids[0])
     
-    x_sum,y_sum, cnt = 0, 0, 0
+    x_sum, y_sum, cnt = 0, 0, 0
     for i in cluster2:
-        x,y =i
+        x, y = i
         x_sum += x 
         y_sum += y 
         cnt += 1
         
     centroids[1][0] = x_sum / cnt
-    centroids[1][1]= y_sum / cnt
+    centroids[1][1] = y_sum / cnt
     print(centroids[1])
     
-#%%
+# %%
 test_dict = {'a':1, 'b':2}
 
 for key in test_dict:
-    print(key,test_dict[key],'\n')
-for key,value in test_dict.items():
-    print(key,value,'\n')
+    print(key, test_dict[key], '\n')
+for key, value in test_dict.items():
+    print(key, value, '\n')
 
-#%%
+# %%
 ## cluster 2개 짜리 9번 만들기 
 # for cluter_cnt in range(9): #카운트 9
 ##### cluster initialization
@@ -228,38 +228,38 @@ for data_point in dataset:
     centroids[cluster_idx] = [x_mean, y_mean]
     print(centroids)
 
-#%% enumerate
+# %% enumerate
 scores = [10, 30, 50, 20, 10]
 
 idx = 0 
 for score in scores:
-    print(idx,score)
+    print(idx, score)
     
     idx += 1
     
-#%%
+# %%
 scores = [10, 30, 50, 20, 10]
 M, idx = None, None
 for score in scores:
-    if M ==None or score > M:
+    if M == None or score > M:
         M = score
         idx = iter_cnt
     iter_cnt += 1
     
 print(idx, M)
 
-#%%
+# %%
 for idx, score in enumerate(scores):
     print(idx, score)
-#%%
-
+    
+# %%
 import numpy as np 
 a = np.array([1, 2, 3, 4, 5])
 b = np.array([10, 20, 30, 40, 50])
 
 print(a % b)
 
-#%%
+# %%
 import numpy as np 
 a = dir()
 print(a)
