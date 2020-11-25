@@ -1,0 +1,457 @@
+# %% ndarray
+import numpy as np
+
+python_list = [1, 2, 3]
+ndarray = np.array(python_list)
+
+print("python_list : ", python_list)
+print("type(pyton_list) : ", type(python_list))
+
+print("ndarray : ", ndarray)
+print("type(ndarray) : ", type(ndarray))
+
+print('dir(python):\n', dir(python_list), '\n')
+print('dir(ndarray):\n', dir(ndarray), '\n')
+
+# %% ndarray 만들기
+#python list -> ndarray
+python_list = [1, 2, 3]
+ndarray = np.array(python_list)
+
+#np.zeros()
+ndarray2 = np.zeros(shape=(10,))
+print(ndarray2)
+
+#np.ones()
+ndarray3 = np.ones(shape=(10,))
+print(ndarray3)
+
+#np.full()
+ndarray4 = np.full(shape=(10,), fill_value=3.14)
+print(ndarray4)
+
+#np.full() with np.ones()
+ndarray5 = 3.14*np.ones(shape=(10,))
+print(ndarray5)
+
+#np.empty()
+ndarray6 = np.empty(shape=(10,))    #empty는 공간만 비어있고 내용은 전의 내용을 저장하고 있음
+print(ndarray6)
+
+# %% ndarray 만들기2
+tmp = np.array([1, 2, 3, 4, 5, 4, 3, 2, 1])
+print(tmp)
+
+ndarray7 = np.zeros_like(tmp)
+print(ndarray7)
+
+ndarray8 = np.ones_like(tmp)
+print(ndarray8)
+
+#ndarray9 = np.full_like(tmp)
+ndarray9 = 3.14*np.ones_like(tmp)
+print(ndarray9)
+
+ndarray10 = np.empty_like(tmp)
+print(ndarray10)
+
+# %% Matrix 만들기 : Python list -> ndarray
+python_list = [[1, 2], [3, 4]]
+ndarray1 = np.array(python_list)
+
+print("python list : ", python_list, '\n')
+print("ndarray1 : \n", ndarray1)
+
+# %%
+ndarray1 = np.zeros(shape=(2, 2, 2))
+print(ndarray1)
+
+ndarray2 = np.zeros(shape=(2, 2))
+print(ndarray2)
+
+ndarray3 = np.ones(shape=(2, 2))
+print(ndarray3)
+
+ndarray4 = np.full(shape=(2, 2), fill_value=3.14)
+print(ndarray4)
+
+ndarray5 = 3.14*np.ones(shape=(2, 2))
+print(ndarray5)
+
+ndarray6 = np.empty(shape=(2, 2))
+print(ndarray6)
+
+# %% vector vs matrix
+ndarray1 = np.ones(shape=(5,))      #vector
+ndarray2 = np.ones(shape=(5, 1))    #matrix
+
+print(ndarray1)
+print(ndarray2)
+
+# %% ndarray information
+ndarray1 = np.full(shape=(2, 2), fill_value = 3.14)
+
+'''shape, dtype, size, itemsize'''
+
+print(ndarray1)
+print("ndarray1.shape: ", ndarray1.shape)
+print("ndarray1.dtype: ", ndarray1.dtype)
+print("ndarray1.size: ", ndarray1.size)
+print("ndarray1.itemsize: ", ndarray1.itemsize) #byte 크기
+print("ndarray data size : ", ndarray1.size*ndarray1.itemsize, 'B')
+
+# %%
+a = np.array([1, 2, 3])
+b = np.array([5, 6, 7])
+
+dot_product = np.sum(a * b) #곱의 합
+print(dot_product)
+
+# %% shape => n_row, n_col
+ndarray1 = np.full(shape=(100, 2), fill_value=3.14)
+
+print("ndarray1.shape: ", ndarray1.shape)
+print("n_row", ndarray1.shape[0])
+print("n_col", ndarray1.shape[1])
+
+# %%
+python_list = [1, 2, 3, 4, 5]
+ndarray1 = np.array(python_list)
+
+print(ndarray1)
+print(ndarray1[0])
+print(ndarray1[1])
+print(ndarray1[2])
+
+# %% ndarray indexing
+python_list = [[1, 2], [3, 4], [5, 6]]
+ndarray1 = np.array(python_list)
+
+print(ndarray1)
+print('student1 : ', ndarray1[0])
+print('student2 : ', ndarray1[1])
+print('student3 : ', ndarray1[2])
+
+# %% 평균 구하기(국어, 수학, 영어)
+scores = np.random.randint(0, 100, size=(100, 3))
+#print(scores)
+
+num = 100
+k_sum, m_sum, e_sum = 0, 0, 0
+
+for score in scores:
+    k_sum += score[0]
+    m_sum += score[1]
+    e_sum += score[2]
+
+k_mean = k_sum / num
+print("국어 평균 : ", k_mean)
+m_mean = m_sum / num
+print("수학 평균 : ", m_mean)
+e_mean = e_sum / num
+print("영어 평균 : ", e_mean)
+
+'''
+answer1
+n_student = scores.shape[0]
+n_class = scores.shape[1]
+
+class1_sum, class2_sum, class3_sum = 0, 0, 0
+for score in scores:
+    class1_val, class2_val, class3_val = score
+    class1_sum += class1_val
+    class2_sum += class2_val
+    class3_sum += class3_val
+
+class1_mean = class1_sum / n_student
+class2_mean = class2_sum / n_student
+class3_mean = class3_sum / n_student
+
+answer2
+class_sum = np.zeros(shape=(3, ))
+for score in scores:
+    class_sum += score
+class_mean = class_sum / n_student
+print(class_mean)
+'''
+# %% 분산 구하기
+scores = np.random.randint(0, 100, size=(100, 3))
+
+num = 100
+k_sum, m_sum, e_sum = 0, 0, 0
+k_squared, m_squared, e_squared = 0, 0, 0
+
+for score in scores:
+    k_sum += score[0]
+    k_squared += score[0]**2
+    
+    m_sum += score[1]
+    m_squared += score[1]**2
+    
+    e_sum += score[2]    
+    e_squared += score[2]**2
+
+k_var = k_squared / num - (k_sum / num)**2
+print("국어 분산 : ", k_var)
+m_var = m_squared / num - (m_sum / num)**2
+print("수학 분산 : ", m_var)
+e_var = e_squared / num - (e_sum / num)**2
+print("영어 분산 : ", e_var)
+
+'''
+answer1
+n_student, n_class = scores.shape
+
+scores_sum = np.zeros(shape=(scores.shape[1], ))
+scores_squared_sum = np.zeros_like(scores_sum)
+
+for score in scores:
+    scores_sum += score
+    scors_squared_sum += score**2
+
+scores_mean = scores_sum / n_student
+scores_variance = scores_squared_sum / n_student - scores_mean**2
+'''
+# %% mse_error 구하기
+import matplotlib.pyplot as plt
+
+n_point = 100
+x = np.random.normal(0, 2, size=(n_point,))
+y = 3*x
+predictions = 2*x
+
+'''
+answer1
+sub_square_sum = 0
+for data_idx in range(n_point):
+    sub_square_sum = (y[data_idx] - predictions[data_idx])**2
+mse_error = sub_square_sum / n_point
+
+answer2
+sub_squares = (y - predictions)**2
+mse_error = 0
+for sub_square in sub_squares:
+    mse_error += sub_square
+mse_error /= n_point
+
+answer3
+sum_, cnt = 0, 0
+for data_idx in range(n_point):
+    sum_ += (y[data_idx] - predictions[data_idx])**2
+    cnt += 1
+mse_error = sum_ / cnt
+
+answer4
+sum_ = 0
+for cnt, data_idx in enumerate(range(n_point)):
+    sum_ += (y[data_idx] - predictions[data_idx])**2
+mse_error = sum_ / (cnt + 1)
+'''
+# fig, ax = plt.subplots(figsize=(10, 10))
+# ax.scatter(x, y)
+# ax.set_xlabel("X data", fontsize = 30)
+# ax.set_ylabel("Y data", fontsize = 30)
+
+# ax.scatter(x, y, label='prediction')
+# ax.legend(fontsize=30)
+
+# ax.grid()
+
+# %% APIs
+scores = np.random.randint(0, 100, size=(100,))
+
+score_mean = np.mean(scores)
+print(score_mean)
+score_mean = scores.mean()
+print(score_mean)
+
+score_var = np.var(scores)
+print(score_var)
+score_var = scores.var()
+print(score_var)
+
+score_std = np.std(scores)
+print(score_std)
+score_std = scores.std()
+print(score_std)
+
+score_max = np.max(scores)
+print(score_max)
+score_max = scores.max()
+print(score_max)
+
+score_min = np.min(scores)
+print(score_min)
+score_min = scores.min()
+print(score_min)
+
+score_argmax = np.argmax(scores)
+print(score_argmax)
+score_argmax = scores.argmax()
+print(score_argmax)
+
+score_argmin = np.argmin(scores)
+print(score_argmin)
+score_argmin = scores.argmin()
+print(score_argmin)
+
+# %% APIs for matrices
+scores = np.random.randint(0, 100, size=(100, 3))
+
+# print(np.sum(scores, axis=0).shape)
+# print(np.sum(scores, axis=1).shape)
+
+mean1 = np.mean(scores)
+mean2 = np.mean(scores, axis=0)
+mean3 = np.mean(scores, axis=1)
+
+print(scores.shape)
+print("axis=0 : ", mean2.shape)
+print("axis=1 : ", mean3.shape)
+
+print("mean1 : ", mean1)
+print("mean2 : ", mean2)
+print("mean3 : ", mean3)
+
+# %% reshape
+a = np.array([1, 2, 3, 4])
+print(a.shape)
+print(a, '\n')
+
+a = a.reshape((4, 1))
+print(a.shape)
+print(a, '\n')
+
+a = a.reshape((1, 4))
+print(a.shape)
+print(a, '\n')
+
+a = a.reshape((2, 2))
+print(a.shape)
+print(a, '\n')
+
+# %% reshape + -1 value(-1은 알아서 하라는 뜻)
+a = np.random.uniform(0, 20, size=(20, ))
+print(a.shape)
+
+a = a.reshape((4, 5))
+print(a.shape)
+a = a.reshape((4, -1))
+print(a.shape)
+a = a.reshape((-1, 5))
+print(a.shape)
+
+# %% reshape to row/col vector
+a = a.reshape((1, -1))  #row vector
+print(a.shape)
+a = a.reshape((-1, 1))  #column vector
+print(a.shape)
+
+# %% Broadcasting(자동으로 차원을 맞춰줌)
+a = np.array([1, 2, 3, 4]).reshape(1, -1)
+b = np.array([10, 20, 30]).reshape(-1, 1)
+print(a.shape)
+print(b.shape)
+
+c = a + b
+print(c.shape)
+
+print(a, '\n')
+print(b, '\n')
+print(c, '\n')
+
+# %%
+a = np.random.uniform(0, 5, size=(2, 3)).astype(np.int)
+print(a, '\n')
+
+b = np.array([1, 2]).reshape(-1, 1)
+print(a + b, '\n')
+
+b = np.array([1, 2, 3]).reshape(1, -1)
+print(a + b, '\n')
+
+# %% arrange(간격)
+a = np.arange(5, 100, 2)    #5부터 100전까지 2단계씩
+print(a)
+
+# %% linspace(개수)
+a = np.linspace(-10, 10, 21)    #-10부터 10까지 21개
+print(a)
+
+# %% MSE error
+n_point = 100
+x = np.random.normal(0, 2, size=(n_point,))
+y = 3*x
+predictions = 2*x
+
+diff_square = (y - predictions)**2
+mse_error = np.mean(diff_square)
+print(mse_error)
+
+# %%
+n_student = 100
+cutoff = 50
+scores = np.random.uniform(0, 100, size=(n_student,))
+
+student_pass = (scores > cutoff).astype(np.int)
+pass_percentage = np.sum(student_pass) / n_student * 100
+print(pass_percentage, '%')
+
+n_pass = 0
+for score in scores:
+    if score > cutoff:
+        n_pass += 1
+print(n_pass / n_student * 100)
+
+# %%
+scores = np.random.uniform(0, 100, size=(n_student,)).astype(np.int)
+print(scores)
+is_odds = (scores % 2).astype(np.int)
+print(is_odds)
+odd_percentage = np.sum(is_odds) / n_student * 100
+print(odd_percentage, '%')
+
+# %%
+n_class, std, n_point = 2, 1, 100
+dataset = np.empty(shape=(0, 2))
+
+for class_idx in range(n_class):
+    centers = np.random.uniform(-3, 3, size=(2, ))
+
+    x_data = np.random.normal(loc=centers[0], scale=std, size=(n_point, 1))
+    y_data = np.random.normal(loc=centers[1], scale=std, size=(n_point, 1))
+
+    data = np.hstack((x_data, y_data))
+    dataset = np.vstack((dataset, data))
+    
+dataset = dataset
+centroids = np.random.uniform(-5, 5, size=(n_class, 2))
+
+template = "Shape -- dataset:{}\t centroids:{}"
+print(template.format(dataset.shape, centroids.shape))
+
+for i in range(9):
+#   clusters = {0:np.empty(shape=(0, 2)), 1:np.empty(shape=(0, 2))}
+    clusters = dict()
+    for cluster_idx in range(n_class):
+        clusters[cluster_idx] = np.empty(shape=(0, 2))
+    
+    for data in dataset:
+        data = data.reshape(1, -1)
+        
+        distances = np.sum((data - centroids)**2, axis=1)     #자동 broadcasting
+        min_idx = np.argmin(distances)
+        
+        clusters[min_idx] = np.vstack((clusters[min_idx], data))
+        
+    for cluster_idx in range(n_class):
+        cluster = clusters[cluster_idx]
+        centroid = np.mean(cluster, axis=0)
+        centroids[cluster_idx] = centroid
+
+# %%
+clusters = np.empty(shape=(0, 2))
+for data in dataset:
+    data = data.reshape(1, 2)
+    clusters = np.vstack((clusters, data))
+    print(clusters.shape)
